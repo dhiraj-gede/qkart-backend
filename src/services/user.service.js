@@ -52,7 +52,7 @@ async function getUserByEmail(email)
  async function createUser(user)
  {
      if (await User.isEmailTaken(user.email))
-         throw new ApiError(httpStatus.OK, `Email already taken`);
+         throw new ApiError(httpStatus.BAD_REQUEST, `Email already taken`);
  
      const salt =  await bcrypt.genSalt(SALT_WORK_FACTOR)
      user.password = await bcrypt.hash(user.password, salt)

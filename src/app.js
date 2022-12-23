@@ -27,6 +27,11 @@ app.use(compression());
 app.use(cors());
 app.options("*", cors());
 
+app.use((req, res, next) => {
+    console.log(req.method,req.url,Date().toString())
+    next()
+})
+
 app.use(passport.initialize())
 passport.use("jwt", jwtStrategy)
 
